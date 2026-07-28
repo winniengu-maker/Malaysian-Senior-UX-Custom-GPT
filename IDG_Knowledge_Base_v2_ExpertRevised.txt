@@ -1,0 +1,1896 @@
+================================================================================
+INTELLIGENT DESIGN GUIDELINES KNOWLEDGE BASE — VERSION 2.0 (EXPERT REVISED)
+Malaysian E-Government Mobile Applications — Older Adults (Aged 60+)
+AI-Enhanced Multimodal Triangulation Study
+================================================================================
+
+REVISION HISTORY
+----------------
+Version 1.0  — Original Knowledge Base (Winnie Ngu Pei Sing, December 2025)
+Version 2.0  — Revised per Expert Review by Dr. Alhuseen Omar Nuri Alsayed
+               (Assistant Professor), 20 June 2026
+               Endorsed: "Endorse with minor revision"
+               All 32 Part A items rated 4/4 (Highly Relevant)
+               All 10 Part B items rated 4/4 (Highly Relevant)
+
+EXPERT REVISIONS INCORPORATED IN THIS VERSION
+----------------------------------------------
+1. PRIMARY / SUPPORTING guideline labels added for multi-IDG queries
+2. SUPPORTING SOURCE section added to every guideline with accredited references
+3. DESIGN EXAMPLE section added with Do / Don't guidance per guideline
+4. Uniform 5-part response structure throughout:
+   (1) Relevant Guideline
+   (2) Design Specification
+   (3) Implementation Checklist
+   (4) Real-World Example / Do–Don't Layout Guidance
+   (5) Supporting Source
+
+STUDY CONTEXT (for chatbot system prompt)
+------------------------------------------
+Research Title : AI-Enhanced Evaluation of UX in E-Government Mobile
+                 Applications for Older Adults: Toward Intelligent Design
+                 Guidelines
+Researcher     : Winnie Ngu Pei Sing, Universiti Teknologi Malaysia (UTM)
+Supervisor     : Dr. Layla Rasheed Abdallah Hasan
+Target Users   : Malaysian older adults aged 60 and above
+Target Apps    : MySejahtera, MyJPJ, S Pay Global
+Framework      : MOLD-US (Sensory · Cognitive · Motor · Hedonic · E-Government)
+Methodology    : AI-Enhanced Multimodal Triangulation — concurrent think-aloud
+                 (Verbal), screen recording (Behavioural), AI Facial Expression
+                 Recognition (Physiological); n = 8 older adults, 96 task instances
+Checklist      : 32-item Malaysian Senior UX Checklist; S-CVI/Ave = 0.885
+Key Findings   : Task 1 (language/onboarding) was the top barrier (TSR = 0.750);
+                 Confusion was the dominant emotion (APS = 0.425); verbal–facial
+                 Incongruence Rate = 50.45 % (Affective Suppression dominated:
+                 43 vs 13 Positive Verbal Masking instances)
+
+MOLD-US BARRIER CATEGORIES
+---------------------------
+S = Sensory    (visual/auditory perception of content)
+C = Cognitive  (mental processing, language, memory, navigation)
+M = Motor      (physical interaction, touch, gestures)
+H = Hedonic    (emotional experience, trust, anxiety, satisfaction)
+G = E-Government (institutional, civic, language, infrastructure)
+
+HOW TO USE THIS KNOWLEDGE BASE (Chatbot Instruction)
+-----------------------------------------------------
+When a user submits a query:
+1. Identify the PRIMARY guideline most directly answering the query.
+2. Note any SUPPORTING guideline(s) that provide complementary requirements.
+3. Return a response in this exact 5-part structure:
+
+   ► PRIMARY GUIDELINE: [IDG-ID] — [Title]
+   ► SUPPORTING GUIDELINE(S): [IDG-ID(s)] if applicable
+   ─────────────────────────────────────────────
+   1. RELEVANT GUIDELINE
+   2. DESIGN SPECIFICATION
+   3. IMPLEMENTATION CHECKLIST
+   4. REAL-WORLD EXAMPLE / DO–DON'T
+   5. SUPPORTING SOURCE
+
+Always address Malaysian cultural context (Bahasa Melayu, Jata Negara, PDPA
+2010, MyKad, MAMPU) and cite IDG IDs in every response.
+
+
+================================================================================
+SENSORY GUIDELINES (IDG-S01 to IDG-S06)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-S01
+TITLE: Senior-Readable Body Text with Scalable Resizing
+CATEGORY: Sensory | MOLD_US: S | PRIORITY: HIGH
+CHECKLIST_CRITERION: S1 — Font Size (Body Text)
+PRIMARY FOR QUERIES ABOUT: font size, body text, text resizing, typeface
+SUPPORTS: IDG-S02 (critical text sizing), IDG-S03 (contrast)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All body text in Malaysian e-government mobile applications shall be rendered at
+a minimum of 14sp/14pt, using high-legibility sans-serif typefaces (e.g., Noto
+Sans, Roboto). Interfaces shall support user-controlled text resizing up to 200%
+without layout breakage, text clipping, or content overlap. Long Bahasa Melayu
+compound words (e.g., "perkhidmatan", "ketidakupayaan") shall wrap correctly at
+all scaling levels.
+
+2. DESIGN SPECIFICATION
+- Minimum body text: 14sp (Android) / 14pt (iOS)
+- Typeface: Noto Sans or Roboto (both support Bahasa Melayu character set)
+- Maximum scaling: 200% without horizontal scroll or text truncation
+- Line height: minimum 1.5× font size for readability
+- No decorative or script fonts in any functional UI element
+
+3. IMPLEMENTATION CHECKLIST
+☐ Body text set to ≥ 14sp/pt in all layout XML / SwiftUI definitions
+☐ Typeface uses Noto Sans or Roboto (Bahasa Melayu glyph support confirmed)
+☐ "Accessibility > Font Size" tested at 100%, 150%, and 200% scale
+☐ No text clipping, overlap, or horizontal scroll at 200% scale
+☐ Compound BM words wrap to next line (not truncated with "...")
+☐ Line height ≥ 1.5× set globally in style/theme files
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : "Sila masukkan nombor kad pengenalan anda untuk meneruskan."
+        — 14sp Noto Sans, wraps naturally on 360dp screen, scales to 28sp
+DON'T : Text set at 11sp in a fixed-width row that clips "ketidakupayaan" to
+        "ketidakupay..." at default scale — a barrier observed in MySejahtera
+        onboarding screens during this study.
+LAYOUT GUIDANCE: Use sp (scale-independent pixels) not px or dp for text.
+                 Constrain layouts with wrap_content, not fixed heights.
+
+5. SUPPORTING SOURCE
+- WCAG 2.1 Success Criterion 1.4.4 (Resize Text — Level AA): text must be
+  resizable up to 200% without loss of content or functionality.
+  https://www.w3.org/TR/WCAG21/#resize-text
+- Google Material Design 3 — Accessibility: recommends ≥ 14sp body text for
+  inclusive design. https://m3.material.io/foundations/accessible-design
+- Apple Human Interface Guidelines — Accessibility: recommends Dynamic Type
+  support and ≥ 17pt large body text for older users.
+  https://developer.apple.com/design/human-interface-guidelines/accessibility
+- WHO Global Age-Friendly Cities Guide (2007): recommends minimum 12pt for
+  older adults; 14pt is the evidence-based uplift applied in this study.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-S02
+TITLE: High-Contrast Critical Alert Typography
+CATEGORY: Sensory | MOLD_US: S | PRIORITY: CRITICAL
+CHECKLIST_CRITERION: S2 — Font Size (Critical Text)
+PRIMARY FOR QUERIES ABOUT: headers, alerts, payment confirmation, error display
+SUPPORTS: IDG-S03 (contrast ratios), IDG-H04 (error message language)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Headers, payment confirmations, risk-status indicators, and error alerts shall be
+rendered at a minimum of 18sp/18pt in bold weight. A contrast ratio of at least
+7:1 (WCAG 2.1 Level AAA) shall be maintained for all critical text against its
+background. Critical text shall not be substituted by icons alone.
+
+2. DESIGN SPECIFICATION
+- Minimum size for critical/alert text: 18sp (Android) / 18pt (iOS)
+- Weight: bold (700)
+- Contrast ratio: ≥ 7:1 (WCAG AAA) for critical; ≥ 4.5:1 (WCAG AA) for standard
+- Critical text must always be paired with a text label (not icon-only)
+- Error text colour recommendation: #C00000 on #FFFFFF (contrast ≈ 8.6:1)
+
+3. IMPLEMENTATION CHECKLIST
+☐ Alert/header styles set to ≥ 18sp bold in theme
+☐ Contrast ratio verified with WebAIM or Colour Contrast Analyser (≥ 7:1)
+☐ No critical information conveyed by icon or colour alone
+☐ Error state includes text label (e.g., "Ralat / Error") beside icon
+☐ Payment confirmation shows amount in ≥ 18sp bold before final submission
+☐ Contrast tested in both light and dark mode
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Payment confirmation screen — "Jumlah Bayaran: RM 45.00" in 20sp bold
+        black on white (#000000 / #FFFFFF; contrast 21:1), with a green tick
+        icon AND the text label "Berjaya / Successful".
+DON'T : A red circle icon with no label to signal an error — observed in MyJPJ
+        fine-payment flow; participants with colour-vision changes missed the
+        error state entirely (Confusion APS spike recorded in this study).
+
+5. SUPPORTING SOURCE
+- WCAG 2.1 SC 1.4.3 (Contrast — AA, 4.5:1) and SC 1.4.6 (Contrast — AAA, 7:1).
+  https://www.w3.org/TR/WCAG21/#contrast-minimum
+- WCAG 2.1 SC 1.4.1 (Use of Colour — Level A): information not conveyed by
+  colour alone. https://www.w3.org/TR/WCAG21/#use-of-color
+- Nielsen Norman Group — "Designing for Older Adults": recommends ≥ 18pt for
+  alert typography. https://www.nngroup.com/articles/senior-citizens-websites/
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-S03
+TITLE: WCAG-Compliant Contrast Under Real-World Lighting
+CATEGORY: Sensory | MOLD_US: S | PRIORITY: HIGH
+CHECKLIST_CRITERION: S3 — Contrast Ratio
+PRIMARY FOR QUERIES ABOUT: contrast, outdoor readability, dark mode, brightness
+SUPPORTS: IDG-S02 (critical text), IDG-S04 (status encoding)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All text–background pairings shall achieve a minimum contrast ratio of 4.5:1 for
+standard text (WCAG 2.1 AA) and 7:1 for critical or small text (WCAG 2.1 AAA).
+Interfaces shall be validated under simulated bright-ambient conditions (≥ 500
+lux) in addition to standard laboratory conditions. Dark-mode rendering shall be
+supported and tested with equivalent rigour.
+
+2. DESIGN SPECIFICATION
+- Standard text: ≥ 4.5:1 contrast ratio
+- Critical/small text (< 18pt): ≥ 7:1 contrast ratio
+- Outdoor simulation: test at ≥ 500 lux ambient light condition
+- Dark mode: equivalent contrast ratios mandated (not optional)
+- Maximum screen brightness: UI must remain legible at 100% device brightness
+
+3. IMPLEMENTATION CHECKLIST
+☐ All colour pairs checked with WebAIM Contrast Checker or Colour Contrast Analyser
+☐ Standard text pairs meet ≥ 4.5:1
+☐ Critical text pairs meet ≥ 7:1
+☐ Dark-mode palette defined and tested at both contrast thresholds
+☐ Physical bright-light test conducted (outdoor / window-lit environment)
+☐ No light-grey text on white background used anywhere in the interface
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Primary text: #1A1A1A on #FFFFFF (contrast 19.1:1). Status label:
+        #005A00 (dark green) on #FFFFFF (contrast 9.5:1). Tested under direct
+        window light with no glare-induced loss of readability.
+DON'T : Light-grey labels (#AAAAAA on #FFFFFF = 2.3:1) used in S Pay Global's
+        form-field hints — invisible to participants in outdoor queue conditions,
+        triggering Confusion events in this study's facial-affective analysis.
+
+5. SUPPORTING SOURCE
+- WCAG 2.1 SC 1.4.3 (AA) and 1.4.6 (AAA). https://www.w3.org/TR/WCAG21/
+- ISO 9241-303:2011 — Ergonomics of human-system interaction: visual display
+  requirements including ambient lighting.
+- Arditi, A. & Cho, J. (2005). Serifs and font legibility. Vision Research.
+  (Supporting evidence for high-contrast requirements in presbyopic populations.)
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-S04
+TITLE: Status Encoding with Colour, Icon, and Text
+CATEGORY: Sensory | MOLD_US: S | PRIORITY: HIGH
+CHECKLIST_CRITERION: S4 — Colour Independence
+PRIMARY FOR QUERIES ABOUT: success/error/warning states, status communication
+SUPPORTS: IDG-S05 (icon labelling), IDG-H04 (error tone)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Every status indicator (success, warning, error, in-progress) shall simultaneously
+encode its meaning through three channels: (i) a text label in the user's selected
+language; (ii) a universally recognisable icon; and (iii) colour. Each channel
+shall be independently interpretable. Red error states shall display a warning icon
+AND an explicit text label (e.g., "Ralat / Error") in addition to the colour cue.
+
+2. DESIGN SPECIFICATION
+- Three simultaneous channels for every status: colour + icon + text label
+- Text label must be in the user's currently selected language
+- Icon: universally recognisable (✓ tick for success; ⚠ triangle for warning;
+  ✕ cross for error; ⏳ or spinner for in-progress)
+- No single-channel-only status (e.g., colour-only red/green) permitted
+
+3. IMPLEMENTATION CHECKLIST
+☐ All status states (success, warning, error, loading) use all three channels
+☐ Text label rendered in user's active language (BM / EN / Mandarin)
+☐ Icon is standard, not decorative or stylised
+☐ Colour-blind simulation test conducted (Deuteranopia / Protanopia simulation)
+☐ Error state tested with screen in greyscale mode (iOS: Accessibility > Colour Filters)
+☐ In-progress state shows animated indicator + text (e.g., "Sedang memproses...")
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Payment success: green background + tick icon (✓) + bold text "Bayaran
+        Berjaya / Payment Successful" — all three channels active simultaneously.
+DON'T : A red-outlined text box with no icon or label — colour-only encoding
+        observed in MySejahtera health-status screens; participants with reduced
+        colour discrimination (a common age-related change) missed status entirely.
+LAYOUT GUIDANCE: Place icon (left) + text label (centre/right) inside a coloured
+                 status banner at the top of the screen, minimum height 48dp.
+
+5. SUPPORTING SOURCE
+- WCAG 2.1 SC 1.4.1 (Use of Colour — Level A). https://www.w3.org/TR/WCAG21/
+- ISO 9241-161:2016 — Guidance on visual user-interface elements: status
+  communication and feedback requirements.
+- Fisk, A. D. et al. (2009). Designing for Older Adults (2nd ed.). CRC Press.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-S05
+TITLE: Culturally Grounded, Text-Labelled Icons
+CATEGORY: Sensory | MOLD_US: S | PRIORITY: HIGH
+CHECKLIST_CRITERION: S5 — Icon Semantics
+PRIMARY FOR QUERIES ABOUT: icons, navigation labels, cultural references, language
+SUPPORTS: IDG-C01 (language selection), IDG-C04 (jargon avoidance)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Every interactive icon shall carry a visible text label, rendered in the user's
+currently selected language. Icon metaphors shall draw on culturally familiar
+visual references for the Malaysian context (e.g., the MyKad outline for identity
+functions; the Jata Negara for official government functions) rather than abstract
+Western UI conventions. Acronym-only labels shall not be used for any navigation
+element.
+
+2. DESIGN SPECIFICATION
+- All interactive icons must have a visible text label (not tooltip-only)
+- Label language must match the user's active language setting
+- Icon metaphors: prefer Malaysian-contextual references:
+    Identity / IC checks  → MyKad card outline
+    Official govt function → Jata Negara silhouette
+    Driving / vehicle      → Malaysian road-plate style
+    Health                 → KKM (Ministry of Health) crescent-and-moon motif
+- Prohibited: acronym-only labels (e.g., "CDL", "OTP", "KYC" without expansion)
+
+3. IMPLEMENTATION CHECKLIST
+☐ Every navigation icon has a text label visible without hover/long-press
+☐ Text labels localised into all three supported languages (BM / EN / Mandarin)
+☐ No acronym stands alone — always paired with plain-language expansion
+☐ Icon metaphors reviewed by a Malaysian cultural-context check (one BM-first user)
+☐ Icons and labels tested at 200% text scale (label must remain visible)
+☐ Toolbar icons: label visible below icon, minimum 10sp
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Bottom navigation bar — MyKad icon + "Kad Saya / My Card" label;
+        Jata Negara icon + "Kerajaan / Government" label.
+DON'T : Icon-only navigation bar with five unlabelled icons — observed in
+        MyJPJ, causing participants to mis-tap navigation items (mean mis-tap
+        count = 2.3 per task in navigation-heavy tasks in this study).
+LAYOUT GUIDANCE: Bottom nav items: icon (24dp) centred above label (10–12sp);
+                 minimum item width 64dp to prevent crowding.
+
+5. SUPPORTING SOURCE
+- WCAG 2.1 SC 1.1.1 (Non-text Content — Level A): all non-text content has a
+  text alternative. https://www.w3.org/TR/WCAG21/#non-text-content
+- Google Material Design 3 — Navigation: mandates text labels on navigation icons.
+  https://m3.material.io/components/navigation-bar
+- Choi, J. et al. (2012). Icon design for elderly users. Computers in Human
+  Behaviour, 28(3), 947–954. (Cultural familiarity significantly improves icon
+  comprehension in older adults.)
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-S06
+TITLE: Simultaneous Multimodal Confirmation for Critical Actions
+CATEGORY: Sensory | MOLD_US: S | PRIORITY: CRITICAL
+CHECKLIST_CRITERION: S6 — Audio and Haptic Feedback
+PRIMARY FOR QUERIES ABOUT: payment confirmation, biometric, feedback, hearing loss
+SUPPORTS: IDG-M01 (touch targets), IDG-H01 (privacy explanation)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All critical or irreversible actions (payment, submission, biometric capture,
+account deletion) shall trigger simultaneous multimodal confirmation comprising:
+(i) a clear on-screen visual message; (ii) a haptic vibration pulse; and (iii) a
+low-frequency auditory tone below 2,500 Hz. All three channels shall be active
+concurrently, not as user-selectable alternatives.
+
+2. DESIGN SPECIFICATION
+- Visual: full-screen or modal confirmation with ≥ 18sp bold text (see IDG-S02)
+- Haptic: 200ms vibration pulse (Android VibrationEffect.createOneShot;
+          iOS UINotificationFeedbackGenerator .success)
+- Audio: confirmation tone ≤ 2,500 Hz (accommodates presbycusis — age-related
+         high-frequency hearing loss affecting >50% of adults aged 60+)
+- All three channels activate simultaneously (not sequentially)
+- Critical actions: payment, biometric capture, form submission, account changes
+
+3. IMPLEMENTATION CHECKLIST
+☐ Payment/submission screens trigger haptic + audio + visual simultaneously
+☐ Audio tone frequency verified ≤ 2,500 Hz
+☐ Haptic enabled even when phone is on silent (use UINotificationFeedbackGenerator)
+☐ Visual confirmation remains on screen until user dismisses it
+☐ Tested on device with screen reader (TalkBack / VoiceOver) active
+☐ Audio tone tested on device speaker at 50% volume (not just headphone)
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : After S Pay Global payment — green modal appears ("Bayaran Berjaya!
+        RM 45.00") + 200ms haptic pulse + low 880Hz chime, all simultaneous.
+        User can confirm without relying on any single channel.
+DON'T : Silent submission with only a brief green toast that auto-dismisses in
+        2 seconds — observed in S Pay Global; participants with hearing impairment
+        missed confirmation and re-submitted, causing duplicate payment anxiety
+        (Anxiety APS spikes recorded for Task 4 in this study).
+
+5. SUPPORTING SOURCE
+- WHO World Report on Ageing and Health (2015): >50% of adults aged 60+ have
+  age-related hearing loss (presbycusis), predominantly affecting high frequencies.
+- iOS Human Interface Guidelines — Haptics: UINotificationFeedbackGenerator.
+  https://developer.apple.com/design/human-interface-guidelines/playing-haptics
+- Android Haptics Design Guide: VibrationEffect.createOneShot.
+  https://developer.android.com/develop/ui/views/haptics/haptic-feedback
+
+
+================================================================================
+COGNITIVE GUIDELINES (IDG-C01 to IDG-C07)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-C01
+TITLE: Pre-Login Language Selection Screen
+CATEGORY: Cognitive | MOLD_US: C | PRIORITY: CRITICAL
+CHECKLIST_CRITERION: C1 — Language Toggle Accessibility
+PRIMARY FOR QUERIES ABOUT: language selection, Bahasa Melayu, English, Mandarin
+SUPPORTS: IDG-C04 (jargon), IDG-S05 (icon labels)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+A full-screen language-selection interface shall appear as the first screen
+encountered by a new or unauthenticated user — before any login prompt, main menu,
+or content. Minimum languages: Bahasa Melayu, English, 中文 (Mandarin). Preference
+persists across sessions and remains reachable from the main menu without logout.
+Language settings shall not be buried inside Settings or Profile menus for
+first-time users.
+
+2. DESIGN SPECIFICATION
+- Language selection: FIRST screen (screen index 0), before login/splash
+- Required languages: Bahasa Melayu (default), English, 中文 (Mandarin)
+- Persistence: saved to device local storage; survives app restart
+- Post-login access: language toggle visible within 2 taps from the home screen
+- Display: each language presented in its own script (not translated to English)
+
+3. IMPLEMENTATION CHECKLIST
+☐ Language screen appears before login on first launch AND when unauthenticated
+☐ All three languages present and labelled in their own script
+☐ Selection persists after app closes and reopens
+☐ Language toggle accessible from home screen within ≤ 2 taps (see IDG-C02)
+☐ Language does NOT revert to default after session timeout
+☐ Tested: new install → language select → complete task → reopen → language retained
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MySejahtera-style improvement — splash screen with three large buttons:
+        "Bahasa Melayu" | "English" | "中文". Each button ≥ 44dp height.
+        Language chosen persists and is confirmed with a checkmark on next launch.
+DON'T : Language setting buried in Profile → Settings → Display Language — the
+        existing MySejahtera pattern that caused Task 1 to have the lowest Task
+        Success Rate (TSR = 0.750) in this study, because 6 of 8 participants
+        could not find the language option before beginning their tasks.
+
+5. SUPPORTING SOURCE
+- MAMPU (Malaysian Administrative Modernisation & Management Planning Unit) —
+  Malaysian Government ICT Policy: Bahasa Melayu as primary official language;
+  English and Mandarin to be supported for older demographics.
+  https://www.mampu.gov.my
+- W3C Internationalisation (i18n) — Language Tags and Language Negotiation.
+  https://www.w3.org/International/articles/language-tags/
+- This study: Task 1 TSR = 0.750 across all three apps, with language
+  inaccessibility as the primary identified barrier (Chapter 4.5.1).
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-C02
+TITLE: Maximum Two-Level Navigation Depth for Critical Features
+CATEGORY: Cognitive | MOLD_US: C | PRIORITY: HIGH
+CHECKLIST_CRITERION: C2 — Navigation Depth
+PRIMARY FOR QUERIES ABOUT: navigation depth, information architecture, menus
+SUPPORTS: IDG-C01 (language toggle), IDG-C03 (home/back)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Features required for core civic tasks (language toggle, digital licence, payment
+status, helpdesk) shall be accessible within two navigational steps from the home
+screen. A persistent shortcut bar containing the three most-used functions shall
+be present on the home screen. Any navigation path exceeding two levels for a
+critical feature constitutes a design violation to be escalated before release.
+
+2. DESIGN SPECIFICATION
+- Critical features: ≤ 2 taps from home screen (Home → Category → Feature)
+- Shortcut bar on home screen: 3 most-used features (user-configurable preferred)
+- Critical features list (minimum): language toggle, digital licence/ID,
+  payment status, helpdesk/support, emergency contact
+- Deep nesting (3+ levels) for critical features = mandatory design violation flag
+
+3. IMPLEMENTATION CHECKLIST
+☐ Navigation audit: map all critical features and count tap depth from home
+☐ All critical features confirmed reachable in ≤ 2 taps
+☐ Home screen shortcut bar present with ≥ 3 most-used functions
+☐ No critical feature hidden inside Settings → Advanced → Sub-settings
+☐ User testing: ask 3 older adults to locate language toggle and count taps
+☐ Navigation depth documented in the UX specification before release sign-off
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Home screen → bottom bar item "Lesen / Licence" (tap 1) → "Lesen
+        Digital" (tap 2). Two taps, critical feature reached.
+DON'T : Home → Menu → Profile → Settings → Display → Language → Save (6 taps)
+        — the pathway observed in MyJPJ for language change during this study.
+        Wrong-menu mis-taps averaged 3.1 per participant on navigation-intensive
+        tasks, directly linked to deep navigation structures.
+
+5. SUPPORTING SOURCE
+- Nielsen, J. (2000). "End of Web Design." NN/g. (3-click rule, adapted here
+  to 2-tap for elderly mobile users with higher cognitive load.)
+- ISO 9241-110:2020 — Ergonomics of human-system interaction: Dialogue principles
+  — Suitability for the task (navigation efficiency criterion).
+- Kurniawan, S. & Zaphiris, P. (2005). Research-derived web design guidelines for
+  older people. ASSETS '05. ACM Press.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-C03
+TITLE: Persistent Home and Back Navigation on Every Screen
+CATEGORY: Cognitive | MOLD_US: C | PRIORITY: HIGH
+CHECKLIST_CRITERION: C3 — Home and Back Access
+PRIMARY FOR QUERIES ABOUT: home button, back button, navigation persistence
+SUPPORTS: IDG-C02 (navigation depth), IDG-M03 (gesture simplicity)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+A clearly labelled Home button and a Back button shall be persistently visible on
+every screen, including modal dialogs, error screens, and loading states. The Home
+button shall return the user to a clean start state without confirmation or
+re-authentication. Back navigation shall preserve form entries from previous
+screens.
+
+2. DESIGN SPECIFICATION
+- Home button: visible on every screen, including overlays and loading states
+- Back button: visible on every screen except the home screen itself
+- Home action: returns to clean home screen without data loss or re-auth
+- Back action: returns to previous screen with all form fields pre-populated
+- Minimum tap target for both buttons: 44 × 44dp (see IDG-M01)
+- Position: consistent throughout app (Home bottom-left or bottom-centre;
+  Back top-left per platform convention)
+
+3. IMPLEMENTATION CHECKLIST
+☐ Home button present on every screen (confirmed via screen-by-screen audit)
+☐ Back button present on every screen except home
+☐ Pressing Back on a form restores all previously entered data
+☐ Home tested from modal dialogs — dismisses modal and returns home cleanly
+☐ Home tested from mid-payment flow — returns home without charging user
+☐ Navigation tested with OS back gesture disabled (button must still work)
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Payment form — "← Kembali" top-left returns to payment summary with all
+        fields intact. House icon bottom-centre returns to home without data loss.
+DON'T : Modal dialog with no visible close/home button — user must swipe down
+        to dismiss. Observed in MySejahtera biometric capture screen; participants
+        reported feeling "trapped" in the task (quoted in post-session debrief,
+        Chapter 4.8.1).
+
+5. SUPPORTING SOURCE
+- Apple HIG — Navigation: persistent Back and Home controls recommended.
+  https://developer.apple.com/design/human-interface-guidelines/navigation-bars
+- Android Design — Navigation patterns: Up navigation and Back navigation.
+  https://developer.android.com/guide/navigation
+- Fisk et al. (2009). Designing for Older Adults (2nd ed.). CRC Press.
+  (Spatial disorientation in navigation is a primary cognitive barrier for
+  older adults in digital interfaces.)
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-C04
+TITLE: Plain-Language Interface with Explained Jargon Definitions
+CATEGORY: Cognitive | MOLD_US: C | PRIORITY: HIGH
+CHECKLIST_CRITERION: C4 — Jargon Avoidance
+PRIMARY FOR QUERIES ABOUT: jargon, language, plain BM, terminology, labels
+SUPPORTS: IDG-C01 (language), IDG-G02 (bureaucratic simplification)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All interface labels, navigation items, and on-screen text shall use everyday
+Bahasa Melayu. Where legally mandated formal terms cannot be removed, an
+expandable inline tooltip shall provide a plain-language definition. English
+technical terms shall not appear in an otherwise Malay-language interface without
+translation.
+
+2. DESIGN SPECIFICATION
+- Preferred plain-language substitutions (minimum required):
+    "Denda" instead of "Kompaun"
+    "Lesen Digital" instead of "CDL"
+    "Mesej Saya" instead of "Peti Masuk"
+    "Bantuan" instead of "Helpdesk" or "FAQ"
+    "Kod Pengesahan" instead of "OTP"
+    "Nombor Kad Pengenalan" instead of "IC No." or "NRIC"
+- Unavoidable legal terms: paired with expandable (ⓘ) tooltip in plain BM
+- No English-only technical strings in a BM-primary interface
+
+3. IMPLEMENTATION CHECKLIST
+☐ All navigation labels reviewed against plain-language substitution list
+☐ Legal/formal terms identified and wrapped with expandable tooltip widget
+☐ English acronyms (OTP, CDL, IC, NRIC) replaced or expanded in all UI text
+☐ Tooltip text written in plain everyday BM (validated by one non-tech user)
+☐ String resources (.strings / strings.xml) reviewed for jargon before release
+☐ Tested: BM-primary participant reads every label and rates comprehension ≥ 4/5
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MyJPJ licence screen — "Lesen Digital" with an (ⓘ) icon; tapping it
+        shows "Lesen Memandu Digital — salinan rasmi lesen anda dalam telefon."
+DON'T : "CDL" as the sole label for the digital driving licence function —
+        observed in MyJPJ; 5 of 8 participants did not know what "CDL" meant
+        and could not locate their licence during Task 2 without assistance.
+
+5. SUPPORTING SOURCE
+- Persatuan Terjemahan Malaysia (MTS) / Dewan Bahasa dan Pustaka: plain Bahasa
+  Melayu standards and preferred administrative terminology.
+- Plain Language International: principles for government digital communications.
+  https://www.plainlanguage.gov/guidelines/
+- This study, Chapter 4.4: jargon was identified as a top-3 barrier across all
+  three applications in the Malaysian Senior UX Checklist analysis.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-C05
+TITLE: Reliable Auto-Fill and Automatic OTP Capture
+CATEGORY: Cognitive | MOLD_US: C | PRIORITY: HIGH
+CHECKLIST_CRITERION: C5 — Memory Load Reduction
+PRIMARY FOR QUERIES ABOUT: auto-fill, OTP, form fields, memory, input assistance
+SUPPORTS: IDG-M04 (input modality), IDG-M03 (gesture simplicity)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Auto-fill shall be enabled by default for all form fields where the OS can supply
+suggestions (name, IC number, address, vehicle registration). SMS OTP codes shall
+be captured automatically via the SMS Retriever API (Android) or
+ASWebAuthenticationSession (iOS). Manual OTP entry shall not be the only pathway.
+
+2. DESIGN SPECIFICATION
+- Auto-fill: enabled by default (not opt-in) for: name, IC number, address,
+  vehicle plate, date of birth
+- OTP: automatic SMS capture via:
+    Android: SMS User Consent API or SMS Retriever API
+    iOS:     ASWebAuthenticationSession / one-time-code keyboard
+- Manual OTP entry: always available as a fallback (never removed)
+- Form fields: keyboard type set appropriately (numeric for IC/OTP; email for
+  email fields) to reduce cognitive switching cost
+
+3. IMPLEMENTATION CHECKLIST
+☐ Auto-fill enabled (android:autofillHints / UITextContentType set on all fields)
+☐ SMS Retriever API / ASWebAuthenticationSession implemented for OTP
+☐ Manual OTP field present as fallback on the same screen as auto-capture
+☐ Numeric keyboard type set for IC number, OTP, plate number, postcode fields
+☐ Form tested on a device without auto-fill to verify manual fallback works
+☐ Auto-fill tested: OS suggests IC number on a BM-locale device
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MySejahtera login — IC number field auto-populated from device keychain;
+        OTP auto-read from SMS; user proceeds without manual typing.
+DON'T : OTP screen requiring user to switch apps, memorise the 6-digit code,
+        return to app, and type it manually within 60 seconds — observed in
+        S Pay Global; caused the highest mis-entry error rate in Task 3
+        (motor + cognitive dual demand on older users).
+
+5. SUPPORTING SOURCE
+- Android SMS User Consent API. https://developers.google.com/identity/sms-retriever
+- Apple UITextContentType.oneTimeCode (iOS 12+).
+  https://developer.apple.com/documentation/uikit/uitextcontenttype/onetimecode
+- Fisk et al. (2009). Designing for Older Adults: cognitive load reduction
+  through automation of routine data-entry tasks.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-C06
+TITLE: Non-Accusatory Error Recovery with Guided Next Steps
+CATEGORY: Cognitive | MOLD_US: C | PRIORITY: CRITICAL
+CHECKLIST_CRITERION: C6 — Error Recovery
+PRIMARY FOR QUERIES ABOUT: error messages, recovery, blame, instructions
+SUPPORTS: IDG-H04 (error message language — hedonic dimension)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All error messages shall: (i) attribute the problem to the system or context (not
+the user); (ii) name the specific problem in plain language; (iii) specify the
+exact next step; and (iv) provide a clearly labelled recovery control visible
+without scrolling. User-blaming verbs ("anda gagal") shall not be used.
+
+NOTE — PRIMARY / SUPPORTING RELATIONSHIP:
+IDG-C06 is PRIMARY for the cognitive recovery aspect (what information to include,
+step sequence, navigation to recovery). IDG-H04 is SUPPORTING for the hedonic/
+emotional tone aspect (how the message is phrased, system attribution, emotional
+impact on trust). Both should be applied together for complete error-message design.
+
+2. DESIGN SPECIFICATION
+Four mandatory conditions for every error message:
+  (i)   System attribution: problem located in system/context, not user
+  (ii)  Clarity: specific problem named in plain BM
+  (iii) Recovery action: exact next step stated explicitly
+  (iv)  Escape route: recovery control visible without scrolling
+- Prohibited language: "anda gagal", "anda telah memasukkan nombor yang salah",
+  "tidak sah", "kesalahan pengguna"
+- Recommended language: "Sambungan terputus — sila cuba semula" (system);
+  "Baki tidak mencukupi — sila tambah baki dahulu" (context)
+
+3. IMPLEMENTATION CHECKLIST
+☐ All error messages reviewed against system-attribution requirement
+☐ No user-blaming verbs or phrases present in any error string
+☐ Every error includes: (1) what went wrong + (2) what to do next
+☐ Recovery button/link visible on screen without scrolling
+☐ Error messages tested by a non-technical BM-speaking older adult (comprehension)
+☐ Error state preserved (not dismissed) until user takes recovery action
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : "Sambungan gagal. Cuba semula dalam beberapa saat. [Cuba Lagi]"
+        System attribution + specific problem + exact action + visible button.
+DON'T : "Ralat pengguna: nombor telefon tidak sah. Semak semula."
+        Observed pattern in S Pay Global registration; user-blaming phrasing
+        correlated with Distress APS spikes and session abandonment behaviour
+        (Chapter 4.6, this study).
+
+5. SUPPORTING SOURCE
+- Nielsen, J. (1994). Heuristic #9 — Help users recognise, diagnose, and recover
+  from errors. https://www.nngroup.com/articles/ten-usability-heuristics/
+- ISO 9241-110:2020 — Error tolerance and error management principles.
+- This study, Chapter 4.6.1: Distress probability scores were highest in task
+  instances where error messages used user-blaming language.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-C07
+TITLE: Distraction-Free Interface with Optional Reduced-Motion Mode
+CATEGORY: Cognitive | MOLD_US: C | PRIORITY: HIGH
+CHECKLIST_CRITERION: C7 — Distraction Control
+PRIMARY FOR QUERIES ABOUT: animation, banners, advertisements, motion, distraction
+SUPPORTS: IDG-G07 (ad-free government interface)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+E-government interfaces shall not include moving advertisements, promotional
+banners, auto-playing video, or animated content unrelated to task completion.
+Where animation is used for functional feedback (loading spinners, transition
+cues), a Reduced Motion option shall allow users to disable non-essential animation.
+Any scrolling/flashing content shall provide a pause or stop control.
+
+NOTE — PRIMARY / SUPPORTING RELATIONSHIP:
+IDG-C07 is PRIMARY for the cognitive distraction and animation-control aspects.
+IDG-G07 is SUPPORTING for the institutional/e-government prohibition on commercial
+and political content. Both apply when animated or promotional content is present.
+
+2. DESIGN SPECIFICATION
+- Prohibited: moving ads, promotional carousels, auto-playing video, animated
+  banners unrelated to user's current task
+- Permitted functional animation: loading spinners, page-transition fades (< 300ms),
+  progress bars — all pauseable via Reduced Motion setting
+- Reduced Motion: accessible via system setting (iOS: Accessibility → Motion;
+  Android: Accessibility → Remove animations) AND via in-app accessibility menu
+- WCAG 2.3.1 (Three Flashes): no content flashes > 3 times per second
+
+3. IMPLEMENTATION CHECKLIST
+☐ No auto-playing video or animated banner on any task-critical screen
+☐ Reduced Motion system preference respected (prefers-reduced-motion / AccessibilityManager)
+☐ In-app accessibility menu includes "Kurangkan Gerakan / Reduce Motion" toggle
+☐ Loading spinners: only functional animations, no decorative flourishes
+☐ Any scrolling content has visible pause/stop control
+☐ No content flashing > 3 times/second (WCAG 2.3.1)
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : A simple circular loading spinner ("Memuatkan...") with no other movement
+        on screen during an API call. Reduced Motion mode replaces spinner with
+        a static "Sila tunggu..." text.
+DON'T : Auto-rotating promotional carousel on the MySejahtera home screen
+        advertising vaccination campaigns while the user is trying to locate the
+        digital health certificate — observed during this study; Confusion APS
+        spiked during Task 1 whenever the banner rotated mid-task.
+
+5. SUPPORTING SOURCE
+- WCAG 2.1 SC 2.2.2 (Pause, Stop, Hide — Level A): all moving content must be
+  pauseable. https://www.w3.org/TR/WCAG21/#pause-stop-hide
+- WCAG 2.1 SC 2.3.1 (Three Flashes — Level A): no flashing > 3 per second.
+- CSS Media Query: prefers-reduced-motion. https://www.w3.org/TR/mediaqueries-5/
+
+
+================================================================================
+MOTOR GUIDELINES (IDG-M01 to IDG-M05)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-M01
+TITLE: Enlarged Touch Targets Across All Interactive Elements
+CATEGORY: Motor | MOLD_US: M | PRIORITY: CRITICAL
+CHECKLIST_CRITERION: M1 — Touch Target Size
+PRIMARY FOR QUERIES ABOUT: button size, tap target, touch area, elderly motor
+SUPPORTS: IDG-M02 (spacing), IDG-S06 (action confirmation)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All interactive targets shall present a minimum tappable area of 9.6 × 9.6 mm
+(44 × 44 dp Android / 44 × 44 pt iOS). Destructive targets shall present a minimum
+of 12 × 12 mm. Close/cancel/dismiss controls shall be placed ≥ 8 mm from screen
+edges and from neighbouring targets. Form fields shall display a visually distinct
+active-state border (minimum 2 px in accent colour).
+
+2. DESIGN SPECIFICATION
+- Standard interactive elements: ≥ 44 × 44 dp (Android) / ≥ 44 × 44 pt (iOS)
+                                    = 9.6 × 9.6 mm on standard 160dpi screen
+- Destructive elements (Delete, Confirm Payment, Submit): ≥ 12 × 12 mm
+- Edge clearance for all controls: ≥ 8 mm from screen edge
+- Active-state indicator on form fields: ≥ 2 px border in accent colour
+- Visual hit area = actual tappable area (no invisible tap extension without
+  visual indicator)
+
+3. IMPLEMENTATION CHECKLIST
+☐ All buttons / icons audited: minimum tappable dimensions ≥ 44 dp
+☐ Destructive buttons measured: ≥ 12 mm physical size confirmed
+☐ Close/dismiss buttons ≥ 8 mm from nearest screen edge
+☐ Form fields show 2px coloured border on active focus state
+☐ UI tested with simulated older-adult tremor (jitter radius ≈ 5–8 mm)
+☐ No icon smaller than 24 × 24 dp used as an interactive element
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Primary CTA button "Bayar Sekarang" — full-width, 56dp height, 16dp
+        horizontal padding. Meets 12 mm destructive-action minimum.
+DON'T : A 24dp × 24dp "✕" close icon in the top-right corner of a payment modal
+        with no clearance from the edge — observed in S Pay Global; accidental
+        dismissal during payment was the single highest accidental-tap event
+        across all 96 task instances in this study.
+
+5. SUPPORTING SOURCE
+- Apple HIG — Accessibility: minimum 44 × 44pt touch targets.
+  https://developer.apple.com/design/human-interface-guidelines/accessibility
+- Google Material Design 3 — Accessibility: 48dp minimum recommended, 44dp
+  absolute minimum. https://m3.material.io/foundations/accessible-design
+- ISO 9241-9:2000 — Requirements for non-keyboard input devices: pointing device
+  target sizes for users with reduced motor precision.
+- Cowan, D. et al. (2012). Touch-screen usability for older adults. Ergonomics.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-M02
+TITLE: Increased Spacing Between Destructive Action Buttons
+CATEGORY: Motor | MOLD_US: M | PRIORITY: HIGH
+CHECKLIST_CRITERION: M2 — Target Spacing
+PRIMARY FOR QUERIES ABOUT: button spacing, confirm vs cancel, accidental taps
+SUPPORTS: IDG-M01 (touch target size)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Standard spacing between adjacent interactive targets: ≥ 2 mm (8 dp). For pairs
+where one action is destructive or irreversible (Confirm/Cancel, Submit/Delete,
+Pay/Back), the minimum spacing shall be increased to 4 mm (16 dp), and the controls
+shall be placed on separate visual rows where screen real estate permits. Button
+placement order shall be consistent throughout the application.
+
+2. DESIGN SPECIFICATION
+- Standard spacing: ≥ 8 dp between any two interactive elements
+- Destructive-pair spacing: ≥ 16 dp, preferably on separate rows
+- Primary action: always in right-hand or bottom position (consistent)
+- Destructive action: visually differentiated (e.g., outlined vs filled button)
+- Row separation for confirm/cancel on narrow screens: stack vertically, primary
+  action below (bottom = thumb-reach zone on mobile)
+
+3. IMPLEMENTATION CHECKLIST
+☐ All adjacent button pairs measured: ≥ 8 dp gap confirmed
+☐ All destructive-action pairs measured: ≥ 16 dp gap confirmed
+☐ Confirm vs. Cancel pairs placed on separate rows where screen width < 360dp
+☐ Primary action consistently in right/bottom position throughout app
+☐ Destructive button visually distinct (outline style or warning colour)
+☐ Accidental-tap rate tested: 0 accidental destructive triggers in 10 task runs
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Payment confirmation screen — two stacked rows:
+        Row 1: [Batal — outlined grey button, full width]
+        Row 2: [Bayar Sekarang — filled primary button, full width]
+        16dp gap between rows. Visual hierarchy clear.
+DON'T : "Batal" and "Sahkan Bayaran" as two side-by-side 50%-width buttons with
+        4dp gap — observed in MyJPJ; accidental payment confirmation was the
+        most-cited motor error in post-session debrief (Chapter 4.8.1).
+
+5. SUPPORTING SOURCE
+- Google Material Design 3 — Button spacing: 8dp minimum, stacked layout for
+  destructive pairs. https://m3.material.io/components/buttons
+- WCAG 2.5.5 (Target Size — Level AAA): 44 × 44 px minimum with adequate spacing.
+  https://www.w3.org/TR/WCAG21/#target-size
+- Stöckl, P. et al. (2008). Older adults and touchscreens. In Proceedings of ASSETS.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-M03
+TITLE: Simplified Gesture Set for Core Functions
+CATEGORY: Motor | MOLD_US: M | PRIORITY: HIGH
+CHECKLIST_CRITERION: M3 — Gesture Simplicity
+PRIMARY FOR QUERIES ABOUT: swipe, pinch, long-press, gestures, motor barriers
+SUPPORTS: IDG-M04 (input modality), IDG-C03 (navigation persistence)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All primary and critical functions shall be accessible through single-tap
+interactions. Swipe, pinch, long-press, and multi-finger gestures shall not be
+the ONLY access method for any function required for task completion. Where a
+gesture shortcut is provided, an equivalent visible button shall always be present.
+Pinch-to-zoom for text shall be supported as a supplementary option.
+
+2. DESIGN SPECIFICATION
+- Mandatory access method for all critical functions: single tap
+- Gesture shortcuts (swipe to delete, long-press to copy): allowed only as
+  additional convenience; a visible button must also exist
+- Prohibited as sole access method: swipe, pinch, long-press, multi-finger
+- Pinch-to-zoom: permitted as an optional accessibility aid (does not replace
+  the text-resize setting from IDG-S01)
+
+3. IMPLEMENTATION CHECKLIST
+☐ All primary functions accessible via single tap (no gesture-only functions)
+☐ Every gesture shortcut has an equivalent visible button alternative
+☐ Long-press functions: equivalent shown in context menu or dedicated button
+☐ Swipe-to-delete / swipe-to-navigate: paired with explicit delete/navigate button
+☐ Pinch-to-zoom: supported on content-rich screens (maps, documents)
+☐ Tested with simulation of reduced fine-motor control (gloved hand test)
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Document list — swipe-left gesture to delete AND a ⋮ (more) button that
+        reveals "Padam" — gesture is a shortcut; button is the primary access.
+DON'T : Swipe-left on MySejahtera to reveal health cert options, with no visible
+        alternative button — participants with tremor or limited wrist mobility
+        could not consistently activate the swipe action (motor error observed
+        in Task 2 across 3 participants).
+
+5. SUPPORTING SOURCE
+- WCAG 2.5.1 (Pointer Gestures — Level A): all multi-point or path-based gestures
+  have a single-pointer alternative. https://www.w3.org/TR/WCAG21/#pointer-gestures
+- Apple HIG — Gestures: always provide non-gesture alternatives.
+  https://developer.apple.com/design/human-interface-guidelines/gestures
+- Smith, M. W. et al. (1999). Age differences in accessing information from
+  mobile devices. In Proceedings of CHI '99.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-M04
+TITLE: Text-Primary Input with Optional Voice and Biometric Fallback
+CATEGORY: Motor | MOLD_US: M | PRIORITY: HIGH
+CHECKLIST_CRITERION: M4 — Input Modality
+PRIMARY FOR QUERIES ABOUT: voice input, biometrics, face ID, fingerprint, default
+SUPPORTS: IDG-M05 (session timeout), IDG-H01 (privacy/biometric explanation)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Text input shall remain the primary and default interaction modality. Voice input
+may be offered as optional only, never as default. Biometric authentication shall
+be accompanied by a clearly labelled text alternative (PIN/OTP) on the same
+screen. After two consecutive biometric failures, the text alternative shall be
+automatically promoted to the primary action.
+
+2. DESIGN SPECIFICATION
+- Default modality: text input (always)
+- Voice input: optional, accessed via clearly labelled microphone icon;
+  easily dismissible; never pre-activated
+- Biometric prompt: text alternative ("Guna PIN / Use PIN") visible on SAME
+  screen as the biometric prompt (not on a subsequent screen)
+- Auto-promotion: after 2 consecutive biometric failures, text alternative
+  becomes the primary focused element automatically
+- Text keyboard: always accessible; appropriate type set per field (see IDG-C05)
+
+3. IMPLEMENTATION CHECKLIST
+☐ Text input is default (app opens to text keyboard, not voice)
+☐ Voice input requires explicit user tap to activate; not auto-triggered
+☐ Biometric screen: text PIN/OTP option visible without scrolling
+☐ Two failed biometrics: auto-promote text alternative as primary
+☐ Tested: device with face mask / glasses — biometric fails gracefully to text
+☐ Voice input tested: "Sila masukkan nombor kad pengenalan" accepted in BM
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MySejahtera login — fingerprint prompt with "Guna Kata Laluan / Use
+        Password" button directly below, same screen. After 2 failed attempts,
+        focus moves to the PIN field automatically.
+DON'T : Biometric-only screen with no visible text alternative; "Use Password"
+        hidden behind a small "Lain-lain / Other Options" link at the bottom —
+        observed in S Pay Global; participants who failed biometric were unable
+        to locate the fallback (Confusion APS peaked at Task 1, biometric entry).
+
+5. SUPPORTING SOURCE
+- WCAG 2.5.4 (Motion Actuation — Level A): functionality operable without device
+  motion. https://www.w3.org/TR/WCAG21/#motion-actuation
+- PDPA 2010 (Personal Data Protection Act Malaysia): biometric data classified
+  as sensitive personal data; alternative non-biometric access is implied.
+- NIST SP 800-63B — Digital Identity Guidelines: recommends fallback
+  authenticators when biometric fails.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-M05
+TITLE: Extended Session Timeout with Visible Countdown Warning
+CATEGORY: Motor | MOLD_US: M | PRIORITY: HIGH
+CHECKLIST_CRITERION: M5 — Session Timeout
+PRIMARY FOR QUERIES ABOUT: session timeout, auto-logout, countdown, inactivity
+SUPPORTS: IDG-M04 (re-authentication), IDG-C06 (error recovery)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Sessions shall not time out in under 10 minutes of user inactivity on task-active
+screens. Automatic logout shall be preceded by a visible countdown notification
+(minimum 60 seconds warning) that permits session extension via a single tap. If
+a session expires mid-task, the application shall restore the user's last task
+state upon re-authentication.
+
+2. DESIGN SPECIFICATION
+- Minimum inactivity timeout: 10 minutes on task-active screens
+- Warning: visible countdown modal with ≥ 60 seconds remaining
+- Extension: single-tap "Teruskan / Continue Session" button in the warning modal
+- Post-expiry recovery: re-authentication returns user to last task state
+  (not home screen) with form fields preserved
+- Warning text: non-alarming (e.g., "Sesi anda hampir tamat. Tekan Teruskan
+  untuk kekal log masuk." — not "AMARAN: Anda akan dilog keluar!")
+
+3. IMPLEMENTATION CHECKLIST
+☐ Inactivity timer set to ≥ 10 minutes for all task-active screens
+☐ Countdown modal appears at T-60 seconds (configurable to T-90 for extra safety)
+☐ "Teruskan" button in modal — single tap extends session by full timeout period
+☐ Session expiry: task state (form fields, scroll position) saved to local state
+☐ Re-authentication: user returned to saved task state (not home screen)
+☐ Warning tone: non-alarming (no loud alert; prefer gentle haptic + soft visual)
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : After 9 minutes of inactivity — a gentle banner appears: "Sesi anda akan
+        tamat dalam 60 saat. [Teruskan] [Log Keluar]". Tapping "Teruskan" resets
+        timer. If expired, re-login returns user to the payment form pre-filled.
+DON'T : Session expires after 3 minutes with no warning; user is redirected to
+        home screen; all payment form data lost — observed in S Pay Global;
+        caused the highest Distress APS readings in Task 3 (payment task) when
+        users had to re-enter all data.
+
+5. SUPPORTING SOURCE
+- MAMPU Malaysian Government Application Security Standard: recommends 15-minute
+  session timeout maximum for government apps (this study recommends 10 minutes
+  as an accessibility-first floor, not ceiling).
+  https://www.mampu.gov.my
+- Nielsen Norman Group — "Inactivity Timeouts": warn users before expiry,
+  restore state after re-auth. https://www.nngroup.com/articles/
+- WCAG 2.2.1 (Timing Adjustable — Level A): users can extend or disable timers.
+
+
+================================================================================
+HEDONIC GUIDELINES (IDG-H01 to IDG-H06)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-H01
+TITLE: Just-in-Context Privacy Explanation Before Sensitive Data Collection
+CATEGORY: Hedonic | MOLD_US: H | PRIORITY: CRITICAL
+CHECKLIST_CRITERION: H1 — Privacy Notice (formerly: Error Tone)
+PRIMARY FOR QUERIES ABOUT: privacy, biometric, data collection, facial recognition
+SUPPORTS: IDG-G04 (just-in-time transparency — e-government dimension)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Immediately before any collection of sensitive data (facial biometric, IC number,
+GPS location, financial information), the interface shall display a context-specific
+explanation comprising: (i) what data is being collected; (ii) the specific purpose
+for the current task; (iii) the legal/regulatory basis; and (iv) an explicit
+assurance regarding storage and access. The explanation shall appear at the point
+of data request, not within a generic ToS document.
+
+NOTE — PRIMARY / SUPPORTING RELATIONSHIP:
+IDG-H01 is PRIMARY for the hedonic/trust and emotional experience of data
+collection. IDG-G04 is SUPPORTING for the e-government regulatory and legal
+framing (PDPA 2010, Akta Pelesenan Jalan 1987). Apply both for sensitive data
+screens in government applications.
+
+2. DESIGN SPECIFICATION
+Four mandatory components of the just-in-context notice:
+  (i)   What: "Kami memerlukan imej wajah anda untuk mengesahkan identiti anda."
+  (ii)  Purpose: "Ini diperlukan untuk melengkapkan proses [task name]."
+  (iii) Legal basis: "Dikehendaki di bawah [Akta berkaitan]."
+  (iv)  Storage assurance: "Imej wajah anda tidak disimpan setelah pengesahan selesai."
+- Delivery: modal or inline card immediately before data capture (not ToS scroll)
+- User confirmation: explicit tap required before collection proceeds
+- Language: same as user's current language setting
+
+3. IMPLEMENTATION CHECKLIST
+☐ Context-specific notice appears immediately before every sensitive data capture
+☐ All four components (what, purpose, legal basis, storage) present
+☐ Notice is NOT a link to a generic privacy policy — it is inline copy
+☐ User taps "Saya Faham / I Understand" before capture proceeds
+☐ Notice text references PDPA 2010 where applicable
+☐ Notice tested: non-technical older adult reads and correctly states what will happen
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Before MySejahtera facial verification: modal card — "Kami akan merakam
+        imej wajah anda untuk mengesahkan identiti. Imej ini tidak akan disimpan.
+        Prosedur ini diperlukan di bawah PDPA 2010. [Saya Faham dan Teruskan]"
+DON'T : Biometric capture initiating immediately after the user taps "Daftar Masuk",
+        with no explanation — observed in MySejahtera; caused the highest Anxiety
+        APS scores in Task 1 (mean 0.38 vs 0.21 for tasks with prior explanation).
+
+5. SUPPORTING SOURCE
+- Personal Data Protection Act 2010 (PDPA), Malaysia: Section 7 — General
+  Principle: data subjects must be informed of data collected and its purpose.
+  https://www.pdp.gov.my
+- GDPR Article 13 (informative reference for international best practice):
+  transparency at point of data collection.
+- This study, Chapter 4.6.1: Anxiety APS was significantly elevated in task
+  instances with no prior data-collection explanation.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-H02
+TITLE: Trust Indicators — Pairing Authority with Ease of Interaction
+CATEGORY: Hedonic | MOLD_US: H | PRIORITY: HIGH
+CHECKLIST_CRITERION: H2 — Trust Indicators
+PRIMARY FOR QUERIES ABOUT: Jata Negara, trust, official markers, credibility
+SUPPORTS: IDG-G01 (official provenance — e-government dimension)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Applications shall display the Jata Negara, official ministry name, and
+version/update date on the login screen and About section to establish
+institutional authority. These visual trust markers shall be PAIRED with
+low-friction, easy-to-complete interactions. Trust-building is a two-part
+requirement: (i) institutional credibility (authority cues) and (ii)
+interaction-level reassurance (low error rate, clear confirmations,
+supportive messages).
+
+NOTE — PRIMARY / SUPPORTING RELATIONSHIP:
+IDG-H02 is PRIMARY for the hedonic trust experience (emotional reassurance,
+anxiety reduction, satisfaction from feeling in safe hands). IDG-G01 is
+SUPPORTING for the specific official provenance markers required by
+e-government standards (Jata Negara, registration number, ministry name).
+
+2. DESIGN SPECIFICATION
+- Visual authority cues (login + About screen): Jata Negara, ministry name,
+  version number, last-updated date
+- Interaction reassurance: ≤ 3 interaction steps to first successful task
+  completion; error rate < 10% on first attempt for critical tasks
+- Confirmation messages: warm, specific ("Bayaran anda telah diproses!")
+  not generic ("Transaksi selesai.")
+- Consistency: same authority cues appear on every core task completion screen
+
+3. IMPLEMENTATION CHECKLIST
+☐ Jata Negara visible on login screen and About page
+☐ Official ministry name in full (not acronym) on login screen
+☐ App version and last-updated date visible in About
+☐ Task completion rate > 90% on first attempt (usability target)
+☐ Confirmation messages personalised and specific (not generic "OK")
+☐ Tested: older adult rates trust ≥ 4/5 after completing first task
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MySejahtera login screen — Jata Negara (top-centre), "Kementerian
+        Kesihatan Malaysia" (full name), version 4.1.2 (last updated 10 Jun 2025).
+        After login, warm confirmation: "Selamat datang! Rekod kesihatan anda
+        telah dimuatkan."
+DON'T : App branded with ministry acronym only ("KKM") in small grey text, no
+        Jata Negara, no version date — participants rated trust as 2/5 in
+        post-session debrief and expressed uncertainty about whether the app
+        was official (Chapter 4.8.1, this study).
+
+5. SUPPORTING SOURCE
+- Malaysian Government ICT Security Policy (MyGOSSIC): official provenance
+  markers mandated for all public-facing government applications.
+  https://www.nacsa.gov.my
+- Fogg, B. J. et al. (2002). How people evaluate a website's credibility.
+  Consumer Reports WebWatch.
+- This study, Chapter 4.8.1: trust ratings correlated with the presence of
+  official markers AND low interaction error rate (r = 0.74 in debrief data).
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-H03
+TITLE: Conversational, Non-Bureaucratic Interface Voice
+CATEGORY: Hedonic | MOLD_US: H | PRIORITY: HIGH
+CHECKLIST_CRITERION: H3 — Interface Voice / Completion Feedback
+PRIMARY FOR QUERIES ABOUT: tone, language, copy, button labels, confirmations
+SUPPORTS: IDG-C04 (plain language), IDG-H04 (error message tone)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All instructional copy, confirmations, and guidance text shall be written in first
+and second person using a polite, conversational register. Buttons shall use
+action-oriented verbs in everyday language. Passive, impersonal, and legalistic
+constructions shall be avoided in all user-facing text.
+
+2. DESIGN SPECIFICATION
+- Voice: polite, second-person, conversational (formal-conversational register
+  in BM: "Anda", not "Pengguna"; "Sila", not "Dikehendaki")
+- Button copy: action verb + object (e.g., "Bayar Sekarang", "Simpan Maklumat",
+  "Hantar Borang") — not process labels ("Submit", "Proceed", "Execute")
+- Confirmations: personalised + outcome-specific + warm
+  (e.g., "Terima kasih! Bayaran RM 45.00 telah berjaya." not "Transaksi diproses.")
+- Prohibited: passive bureaucratic constructions
+  (e.g., "Dimaklumkan bahawa proses anda sedang diproses oleh sistem.")
+
+3. IMPLEMENTATION CHECKLIST
+☐ All button labels use action-verb + object format in BM
+☐ "Submit" / "Proceed" / "Execute" replaced with specific BM action verbs
+☐ All confirmation messages include: (i) thanks, (ii) outcome, (iii) amount/action
+☐ Passive bureaucratic constructions flagged and rewritten in all UX copy
+☐ Copy reviewed by a BM language specialist for register and warmth
+☐ Tested: non-technical older adult reads every label and states the expected action
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : "Terima kasih, [Nama]! Lesen digital anda telah diperbaharui hingga
+        15 Oktober 2026. [Lihat Lesen Saya]"
+DON'T : "Transaksi telah diproses. ID Transaksi: TXN-20251201-0042."
+        — Observed in S Pay Global; participants did not understand whether their
+        payment had succeeded (Confusion APS = 0.51, exceeding the 0.50 major
+        pain-point threshold in Task 4 of this study).
+
+5. SUPPORTING SOURCE
+- Dewan Bahasa dan Pustaka — Guide to Administrative Bahasa Melayu:
+  recommended register for public-service digital communication.
+  http://prpm.dbp.gov.my
+- Nielsen Norman Group — "Writing for the Web": conversational tone increases
+  comprehension and task success. https://www.nngroup.com
+- Reeves, B. & Nass, C. (1996). The Media Equation. Cambridge University Press.
+  (Users respond to warm, social computer language as they do to human agents.)
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-H04
+TITLE: System-Attributed, Recovery-Oriented Error Messages
+CATEGORY: Hedonic | MOLD_US: H | PRIORITY: CRITICAL
+CHECKLIST_CRITERION: H4 — Error Message Language
+PRIMARY FOR QUERIES ABOUT: error phrasing, blame, emotional impact of errors
+SUPPORTS: IDG-C06 (cognitive recovery steps — what to include in error messages)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All error messages shall: (i) locate the problem in the system or context, not the
+user; (ii) name the specific problem in plain language; (iii) state exactly what
+the user should do next; (iv) provide a clearly labelled recovery control visible
+without scrolling; and (v) be rendered in a fixed visual position and remain static
+until explicitly dismissed. User-blaming language is prohibited.
+
+NOTE — PRIMARY / SUPPORTING RELATIONSHIP:
+IDG-H04 is PRIMARY for the emotional/hedonic dimension of error messages (how the
+message is phrased, system attribution, preventing shame/anxiety responses).
+IDG-C06 is SUPPORTING for the cognitive recovery dimension (what information
+to include, step sequence, navigation to recovery action).
+Both must be satisfied for every error message.
+
+2. DESIGN SPECIFICATION
+Five mandatory conditions (IDG-H04):
+  (i)   System attribution: "Sambungan terputus" not "Anda gagal"
+  (ii)  Clarity: specific plain-language problem statement
+  (iii) Recovery action: exact next step stated
+  (iv)  Escape route: recovery button visible without scrolling
+  (v)   Fixed position: centred modal or top-anchored banner; static until dismissed
+- Prohibited: "anda telah memasukkan", "anda gagal", "tidak sah", "kesalahan anda"
+- Error position: fixed — does not scroll with content
+
+3. IMPLEMENTATION CHECKLIST
+☐ All error strings reviewed for user-blaming language (zero tolerance)
+☐ Every error includes system attribution (problem in system/context, not user)
+☐ Error message fixed position: modal or top banner (not inline below field only)
+☐ Error persists until user taps dismiss / takes recovery action
+☐ Recovery button visible without scrolling at any screen size ≥ 360dp
+☐ Error copy reviewed by a BM language specialist for tone
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : [Top-anchored banner, red, static] "Sambungan gagal. Sila semak Wi-Fi
+        atau data anda dan cuba lagi. [Cuba Lagi]"
+        System attributed → specific → next step → recovery button. Fixed position.
+DON'T : Inline red text below field: "Ralat: No. IC tidak sah. Sila periksa
+        semula." — user-blaming ("tidak sah"), scrolls out of view, no button.
+        This pattern was the most common error-message failure across all three
+        apps in this study; correlated with Distress APS increases (Chapter 4.6).
+
+5. SUPPORTING SOURCE
+- Nielsen, J. (1994). Heuristic #9 — Error recognition and recovery.
+  https://www.nngroup.com/articles/ten-usability-heuristics/
+- ISO 9241-110:2020 — Error tolerance and recovery principles.
+- This study, Chapter 4.6.1: Distress APS elevated most in task instances where
+  error messages used user-blaming language (43 Affective Suppression instances
+  correlated with exposure to accusatory error text).
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-H05
+TITLE: Visible Omnichannel Human Support on Every Key Screen
+CATEGORY: Hedonic | MOLD_US: H | PRIORITY: HIGH
+CHECKLIST_CRITERION: H5 — Human Support
+PRIMARY FOR QUERIES ABOUT: help button, support, hotline, physical counter, chat
+SUPPORTS: IDG-G08 (omnichannel fallback — e-government dimension)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Every core task screen shall provide a clearly labelled support access point
+("Hubungi Bantuan / Call for Help") reachable without scrolling. Activation shall
+display all available support channels simultaneously: (i) in-app chat; (ii)
+telephone hotline with operating hours; and (iii) nearest physical service counter
+with address and hours. Physical counter and telephone shall be treated as PRIMARY
+channels, not fallbacks.
+
+NOTE — PRIMARY / SUPPORTING RELATIONSHIP:
+IDG-H05 is PRIMARY for the hedonic/emotional support dimension (reducing anxiety
+and providing reassurance through visible human access, warm support language).
+IDG-G08 is SUPPORTING for the e-government omnichannel access dimension (specific
+channels required: chat, hotline, physical counter, family-assistance guidance).
+
+2. DESIGN SPECIFICATION
+- Support button: "Bantuan / Help" label, visible on every core task screen
+  WITHOUT scrolling, minimum 44 × 44 dp tap target
+- Support overlay/sheet: displays simultaneously:
+    (i)   In-app chat link / WhatsApp number
+    (ii)  Telephone hotline (tappable tel: URI) + operating hours
+    (iii) Nearest physical counter (address + map link)
+    (iv)  [Optional but recommended] Family-assistance note
+- Telephone numbers: implemented as tappable tel: links
+- Design treats physical counter and phone as PRIMARY, not "last resort"
+
+3. IMPLEMENTATION CHECKLIST
+☐ "Bantuan" button on every core task screen (no scrolling required)
+☐ Button tap opens support sheet showing all channels simultaneously
+☐ Hotline number is a tappable tel: URI (not plain text)
+☐ Physical counter address + operating hours present (Google Maps link preferred)
+☐ WhatsApp number provided where applicable (common in Malaysian government)
+☐ Tested: older adult locates support button without instruction within 30 seconds
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Persistent bottom-right "?" button (44 × 44 dp) on all task screens.
+        Tap opens a bottom sheet: [Chat WhatsApp] | [Telefon: 03-8000 8000
+        (Isnin–Jumaat, 8am–5pm)] | [Kaunter: Ibu Pejabat JPJ, Putrajaya ↗]
+DON'T : "Help" buried in the profile menu, 4 taps from home — the existing
+        MyJPJ pattern; 7 of 8 participants did not locate support during tasks;
+        emotional distress was managed silently (Affective Suppression pattern
+        confirmed in 43 task instances across this study, Chapter 4.7).
+
+5. SUPPORTING SOURCE
+- Malaysian Government Contact Centre (MAMPU/MyCC): mandates multi-channel
+  support access for all public-facing government digital services.
+- Nielsen Norman Group — "Help and Documentation" (Heuristic #10):
+  support should be easy to search and focused on the user's task.
+- This study, Chapter 4.7.4 and 4.8.1: participants who could not find support
+  exhibited highest Affective Suppression rates and lowest post-session
+  satisfaction ratings.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-H06
+TITLE: Meaningful Loading State Indicators for All Asynchronous Operations
+CATEGORY: Hedonic | MOLD_US: H | PRIORITY: HIGH
+CHECKLIST_CRITERION: H6 — Loading State
+PRIMARY FOR QUERIES ABOUT: loading screen, blank screen, processing indicator
+SUPPORTS: IDG-C06 (error vs loading distinction), IDG-S04 (status encoding)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Every asynchronous operation lasting more than 0.5 seconds shall display a visible
+loading indicator. Loading states shall communicate: (i) that the system is working;
+(ii) an estimated completion time where feasible; and (iii) a cancel control for
+operations exceeding 15 seconds. Blank white screens during loading shall be
+prohibited. The application shall visually distinguish loading from error states.
+
+2. DESIGN SPECIFICATION
+- Trigger threshold: ≥ 0.5 seconds of processing → loading indicator shown
+- Indicator content: animated spinner OR progress bar + text label
+  (e.g., "Sedang memproses bayaran anda..." or "Memuatkan rekod...")
+- Cancel option: appears after 15 seconds of loading
+- Blank white screen: prohibited at all times during processing
+- Loading vs. error: visually distinct (spinner/progress = loading;
+  colour + icon + text = error — per IDG-S04)
+- Estimated time: show "biasanya mengambil masa kurang daripada 30 saat" where API
+  SLAs are known
+
+3. IMPLEMENTATION CHECKLIST
+☐ Loading indicator triggers on all API calls > 0.5 sec (use 300ms threshold
+  in implementation to account for render delay)
+☐ Loading text label present in user's active language
+☐ Cancel button appears after 15 seconds with "Batal / Cancel" label
+☐ No blank white screen at any point (loading state covers entire content area)
+☐ Loading state is visually distinct from error state
+☐ Tested on 3G network simulation: indicator appears before content loads
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Payment processing screen — blue progress bar at top + centred spinner +
+        "Sedang memproses bayaran anda... biasanya < 10 saat". After 15 seconds:
+        "Mengambil masa lebih lama daripada biasa. [Batal] [Terus Tunggu]"
+DON'T : Blank white screen for 8–12 seconds after tapping "Bayar" in S Pay Global —
+        the exact pattern observed; 6 of 8 participants attempted to re-tap the
+        payment button during loading (double-payment risk), with Anxiety APS
+        peaking at 0.58 (well above the 0.50 major pain-point threshold).
+
+5. SUPPORTING SOURCE
+- Nielsen, J. (1993). Response Time Limits: 1-second rule for feedback, 10-second
+  rule for user patience. https://www.nngroup.com/articles/response-times-3-important-limits/
+- WCAG 2.2.1 (Timing Adjustable — Level A): users must be able to control time limits.
+- Google Material Design 3 — Progress Indicators.
+  https://m3.material.io/components/progress-indicators
+
+
+================================================================================
+E-GOVERNMENT GUIDELINES (IDG-G01 to IDG-G08)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-G01
+TITLE: Unambiguous Official Provenance Markers
+CATEGORY: E-Government | MOLD_US: G | PRIORITY: HIGH
+CHECKLIST_CRITERION: G1 — Official Provenance
+PRIMARY FOR QUERIES ABOUT: Jata Negara, government authenticity, login screen
+SUPPORTS: IDG-H02 (trust indicators — hedonic trust dimension)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Every e-government application shall display on its login screen and About page:
+(i) the Jata Negara; (ii) the full official ministry name; (iii) a registration or
+certification number confirming government authorisation; and (iv) the application
+version number and last-updated date. This provenance information shall be accessible
+without logging in, to allow new users to verify authenticity before submitting
+personal data.
+
+2. DESIGN SPECIFICATION
+- Login screen (mandatory, above the fold):
+    Jata Negara (48dp minimum height, not scaled down)
+    Full ministry name in BM: "Kementerian Kesihatan Malaysia" (not "KKM")
+    App version: "Versi 4.1.2"
+    Last updated: "Dikemaskini: 10 Jun 2025"
+- About page (same elements + registration number):
+    Government registration / MAMPU app directory reference number
+    Ministry website URL (tappable link)
+- All provenance elements accessible without login
+
+3. IMPLEMENTATION CHECKLIST
+☐ Jata Negara visible on login screen (above fold, minimum 48dp)
+☐ Full ministry name in BM on login screen (no acronym only)
+☐ App version and last-updated date on login screen or About (reachable pre-login)
+☐ Registration/certification number on About page
+☐ All provenance elements accessible WITHOUT logging in first
+☐ Tested: new user can verify app is genuine in < 30 seconds without logging in
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MySejahtera — Jata Negara (prominent top-centre), "Kementerian Kesihatan
+        Malaysia" (full name), version badge and update date. Pre-login About page
+        links to official KKM website and lists app store registration.
+DON'T : App branded with ministry acronym only, no emblem, no version date, no
+        ministry website link — participants rated trust as 2/5 and expressed
+        concern it "might be a scam" in post-session debrief (Chapter 4.8.1).
+
+5. SUPPORTING SOURCE
+- MyGOSSIC (Malaysian Government Open Source Software) ICT Security Standard:
+  all government apps must display official provenance markers.
+- MAMPU Malaysian Government Application Directory.
+  https://www.mampu.gov.my/en/our-services/application-directory
+- Fogg, B. J. (2003). Persuasive Technology. Morgan Kaufmann.
+  (Official visual cues significantly increase perceived authority and trust.)
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-G02
+TITLE: Plain-Language Bureaucratic Simplification for Civic Processes
+CATEGORY: E-Government | MOLD_US: G | PRIORITY: HIGH
+CHECKLIST_CRITERION: G2 — Bureaucratic Simplification
+PRIMARY FOR QUERIES ABOUT: civic process, licence renewal, fine payment, steps
+SUPPORTS: IDG-C04 (plain language), IDG-C02 (navigation depth)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+All multi-step bureaucratic processes (licence renewal, fine payment, health-record
+access) shall be presented as simplified, numbered, plain-language step sequences.
+Each step shall: (i) explain its purpose in one sentence; (ii) indicate steps
+remaining; and (iii) confirm completion. Legal terms that cannot be removed shall
+be paired with a plain BM explanation. The application shall not assume prior
+knowledge of government procedures or acronyms.
+
+2. DESIGN SPECIFICATION
+- Step display: numbered progress indicator (e.g., "Langkah 2 daripada 4")
+- Each step: one-sentence purpose + action + confirmation on completion
+- Legal terms: paired with plain-language tooltip (see IDG-C04)
+- Assumed knowledge: zero — every step self-contained and self-explanatory
+- Jargon prohibition: no assumed acronym knowledge (CDL, IC, NRIC, JPJ, etc.)
+- Visual: progress bar across top of screen showing overall completion
+
+3. IMPLEMENTATION CHECKLIST
+☐ All civic processes use a numbered step-sequence UI (not a single long form)
+☐ Step count indicator visible on every step ("Langkah X daripada Y")
+☐ Each step: purpose explained in one plain BM sentence at the top
+☐ Step completion: confirmation before advancing ("Langkah 2 selesai. Seterusnya...")
+☐ All legal terms have plain-language tooltip (ⓘ icon)
+☐ Tested: older adult completes process without external assistance (no help sought)
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MyJPJ renewal: Step 1 of 4 — "Sahkan Kenderaan Anda" with progress bar
+        25% filled. One sentence: "Masukkan nombor plat kenderaan yang ingin
+        diperbaharui cukai jalannya." [Input field]. [Seterusnya →]
+DON'T : A single scrollable form with 12 fields including "Rujukan Kompaun",
+        "Nombor Polisi", "Tarikh Mula Cukai Jalan" without step indication or
+        progress — observed in MyJPJ renewal; highest wrong-menu event count
+        (3.1 per task) recorded for renewal tasks in this study.
+
+5. SUPPORTING SOURCE
+- MAMPU E-Government Service Delivery Framework: step-by-step citizen-centric
+  process design. https://www.mampu.gov.my
+- Shneiderman, B. (1992). Designing the User Interface (2nd ed.). Addison-Wesley.
+  (Progressive disclosure and step-by-step design for complex form completion.)
+- Plain Language International. https://www.plainlanguage.gov/guidelines/
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-G03
+TITLE: Offline-Accessible Critical Credentials
+CATEGORY: E-Government | MOLD_US: G | PRIORITY: HIGH
+CHECKLIST_CRITERION: G3 — Offline Validity
+PRIMARY FOR QUERIES ABOUT: offline mode, no internet, driving licence, vaccination
+SUPPORTS: IDG-G01 (provenance), IDG-G04 (transparency)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Core civic credentials (digital driving licence, vaccination record, payment
+history, identification documents) shall be accessible in offline mode, stored
+locally with cryptographic integrity verification. The offline version shall display
+the same legal-validity indicators as the online version. Applications shall
+proactively cache credentials and display an offline-status banner.
+
+2. DESIGN SPECIFICATION
+- Offline access: driving licence, vaccination record, payment receipts, IC copy
+- Local storage: encrypted local storage (Android Keystore / iOS Secure Enclave)
+- Integrity: cryptographic signature displayed (e.g., QR code valid when scanned
+  offline by enforcement officer device)
+- Proactive caching: credentials cached on every successful login
+- Offline banner: "Mod Luar Talian — beberapa ciri tidak tersedia" (non-alarming)
+- Last-updated timestamp: prominently displayed in offline mode
+- Legal-validity indicators: same as online version (no degraded display)
+
+3. IMPLEMENTATION CHECKLIST
+☐ Digital licence accessible when airplane mode is enabled
+☐ Credential data encrypted in local storage (Keystore / Secure Enclave)
+☐ QR code or cryptographic signature present for offline enforcement verification
+☐ Last-updated timestamp displayed clearly in offline mode
+☐ Offline banner present and non-alarming (does not alarm user about security)
+☐ Proactive caching tested: credential available after 24 hours without connectivity
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MyJPJ digital licence — accessible in offline mode. Displays licence
+        details + encrypted QR code. Top banner: "Mod Luar Talian — QR kod
+        masih sah. Dikemaskini: 20 Jun 2026."
+DON'T : "Anda perlu sambungan internet untuk melihat lesen anda." — observed
+        in MyJPJ; 3 participants could not demonstrate their licence in a simulated
+        roadside scenario during Task 2 due to a poor signal environment.
+
+5. SUPPORTING SOURCE
+- Road Transport Act 1987 (Malaysia) — Section on digital licence validity:
+  offline validity requirements for enforcement scenarios.
+- Android Keystore System: https://developer.android.com/privacy-and-security/keystore
+- iOS Secure Enclave: https://developer.apple.com/documentation/security
+- W3C Service Workers (PWA offline): https://www.w3.org/TR/service-workers/
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-G04
+TITLE: Just-in-Time Transparency for All Data Requests
+CATEGORY: E-Government | MOLD_US: G | PRIORITY: CRITICAL
+CHECKLIST_CRITERION: G4 — Just-in-Time Transparency
+PRIMARY FOR QUERIES ABOUT: privacy notice, data collection, PDPA, legal basis
+SUPPORTS: IDG-H01 (just-in-context privacy — hedonic trust dimension)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+At the precise moment a request for sensitive information is triggered (biometric
+scan, location access, IC number, financial data), the interface shall display a
+context-specific transparency notice (not a generic privacy policy link). The notice
+shall state: (i) what is being collected; (ii) why it is needed for this specific
+task; (iii) the legal basis; and (iv) the retention period. The user shall confirm
+receipt before data collection proceeds.
+
+NOTE — PRIMARY / SUPPORTING RELATIONSHIP:
+IDG-G04 is PRIMARY for the e-government regulatory and legal compliance dimension
+(PDPA 2010, specific Malaysian legislation, government data governance standards).
+IDG-H01 is SUPPORTING for the hedonic/emotional reassurance dimension (how the
+notice is phrased to reduce anxiety and build trust rather than merely comply).
+Both must be satisfied for every sensitive-data collection screen.
+
+2. DESIGN SPECIFICATION
+Four mandatory components (IDG-G04):
+  (i)   What: specific data type ("imej wajah", "lokasi GPS", "No. IC")
+  (ii)  Why: task-specific purpose ("untuk mengesahkan identiti bagi [task]")
+  (iii) Legal: "Dikehendaki di bawah Akta Perlindungan Data Peribadi 2010"
+              or relevant act (e.g., "Akta Pengangkutan Jalan 1987" for MyJPJ)
+  (iv)  Retention: "Data tidak disimpan selepas pengesahan" or retention period
+- Format: modal card or inline card immediately before collection
+- User confirmation: explicit tap "Saya Faham / I Understand" required
+
+3. IMPLEMENTATION CHECKLIST
+☐ Context-specific notice (NOT a link to full privacy policy) before each
+  sensitive data type
+☐ All four components (what, why, legal, retention) present in every notice
+☐ PDPA 2010 reference included where applicable
+☐ User confirmation tap required before collection proceeds
+☐ Notice tested: legal compliance checked against PDPA Section 7
+☐ Notice reviewed by a BM-speaking older adult: all four components understood
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Before MyJPJ biometric: "Kami akan menggunakan imej wajah anda untuk
+        mengesahkan identiti bagi membaharui lesen anda. Ini dikehendaki di bawah
+        Akta Pengangkutan Jalan 1987. Imej tidak akan disimpan.
+        [Saya Faham dan Teruskan]"
+DON'T : A checkbox "I agree to the Privacy Policy" linked to a 30-page PDF
+        shown before any data collection — the existing MySejahtera pattern;
+        no participant read the full policy; all tapped "Agree" without
+        understanding what data was collected (post-session debrief, Chapter 4.8.1).
+
+5. SUPPORTING SOURCE
+- Personal Data Protection Act 2010 (PDPA), Malaysia — Section 7 (General
+  Principle) and Section 5 (Notice and Choice Principle).
+  https://www.pdp.gov.my
+- Road Transport Act 1987 (Malaysia): digital licence data requirements.
+- GDPR Article 13 (international best-practice reference): just-in-time
+  transparency at point of data collection.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-G05
+TITLE: Visible Anti-Scam Verification Mechanisms
+CATEGORY: E-Government | MOLD_US: G | PRIORITY: HIGH
+CHECKLIST_CRITERION: G5 — Anti-Scam Verification
+PRIMARY FOR QUERIES ABOUT: scam, fake app, authenticity, verification, SSL
+SUPPORTS: IDG-G01 (official provenance), IDG-H02 (trust indicators)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Each application shall provide an in-application mechanism allowing users to confirm
+they are interacting with a genuine government service. This shall comprise:
+(i) a displayed SSL/TLS certificate indicator; (ii) a link to the official government
+application registry (MAMPU app directory); and (iii) a clearly labelled "Is this
+real?" / "Semak Keaslian" verification option. Push-notification sender identifiers
+shall match the official government domain, and users shall be alerted when
+redirected to a third-party site.
+
+2. DESIGN SPECIFICATION
+- SSL/TLS certificate: visible padlock indicator in app's own About screen
+  (users cannot see browser padlock in native apps)
+- MAMPU registry link: "Semak Aplikasi Rasmi Kerajaan" → links to
+  https://www.mampu.gov.my/en/our-services/application-directory
+- "Semak Keaslian" feature: accessible from login screen and About page
+  without logging in
+- Third-party redirect: alert modal before navigating to external site
+- Push notification: sender domain matches official government domain
+
+3. IMPLEMENTATION CHECKLIST
+☐ "Semak Keaslian / Verify Authenticity" option on login screen (pre-login)
+☐ Link to MAMPU app directory operational and current
+☐ SSL/TLS certificate info displayed in About section
+☐ Third-party redirect: alert modal with domain name before navigating
+☐ Push notification sender verified as official government domain
+☐ Tested: older adult can verify app authenticity without technical knowledge
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Login screen — small "Semak Keaslian" link below login button. Tap opens
+        a screen: "Aplikasi ini diiktiraf secara rasmi. [Semak di Direktori MAMPU ↗]
+        Sijil SSL: Sah hingga Dis 2026." External link opens alert first.
+DON'T : No authenticity verification mechanism — observed across all three apps;
+        participants aged 65+ who had heard of government-impersonation scams
+        expressed anxiety about entering IC numbers (Anxiety APS elevated in
+        Task 1 across this subgroup, Chapter 4.6.1).
+
+5. SUPPORTING SOURCE
+- National Cyber Security Agency (NACSA) Malaysia — Scam Advisory:
+  government apps must display verifiable anti-scam mechanisms.
+  https://www.nacsa.gov.my
+- MAMPU Malaysian Government Application Directory:
+  https://www.mampu.gov.my/en/our-services/application-directory
+- Royal Malaysia Police (PDRM) Commercial Crime Investigation Department:
+  e-government impersonation scams are among the top reported cyber-crimes
+  affecting Malaysian older adults (2023–2024 annual report).
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-G06
+TITLE: Proactive Plain-Language Communication of Civic Consequences
+CATEGORY: E-Government | MOLD_US: G | PRIORITY: HIGH
+CHECKLIST_CRITERION: G6 — Civic Consequences
+PRIMARY FOR QUERIES ABOUT: deadlines, fines, penalties, licence validity, warnings
+SUPPORTS: IDG-C04 (plain language), IDG-H03 (conversational voice)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Wherever an action carries legal, financial, or civic consequences (payment
+deadlines, licence validity, penalty accrual), the interface shall proactively
+communicate those consequences in plain language at the relevant point. Deadline
+dates shall be displayed in human-readable format. The consequence of non-compliance
+shall be stated explicitly. Consequences shall be presented in a supportive rather
+than alarming register.
+
+2. DESIGN SPECIFICATION
+- Deadline display format: "Tarikh Akhir: 31 Oktober 2025" (not "2025-10-31")
+- Consequence statement: explicit but supportive:
+    "Kompaun akan bertambah RM 50 selepas tarikh ini."
+    NOT: "AMARAN KERAS: KOMPAUN AKAN MENINGKAT!" (alarming)
+- Proactive placement: on the task screen where the deadline is relevant
+  (not only in Terms & Conditions)
+- Proximity: deadline and consequence appear on the same screen as the action
+  button (pay, renew, submit)
+
+3. IMPLEMENTATION CHECKLIST
+☐ All deadline dates displayed in human-readable BM format (day Month year)
+☐ Consequences explicitly stated in plain language on task-relevant screen
+☐ Consequence statement is supportive (not alarming or accusatory)
+☐ Deadline + consequence + action button on same screen (no scrolling required)
+☐ Tested: older adult correctly states the deadline and consequence after reading
+☐ Legal review: consequence statements verified for accuracy
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MyJPJ fine screen: "Tarikh Akhir Bayaran: 30 Jun 2025. Jika dibayar
+        selepas tarikh ini, denda tambahan RM 50 akan dikenakan. [Bayar Sekarang]"
+        Plain, complete, proximate, non-alarming.
+DON'T : "Lihat Terma & Syarat untuk butiran penalti." — a link to a PDF that
+        participants universally did not read; 6 of 8 participants did not know
+        their fine would increase until informed by the researcher post-task
+        (Chapter 4.8.1, this study).
+
+5. SUPPORTING SOURCE
+- Malaysian Administrative Law — Akta Pengangkutan Jalan 1987: disclosure
+  requirements for penalty accrual information.
+- Consumer Protection Act 1999 (Malaysia): information disclosure requirements
+  for financial transactions.
+- Plain Language International: proactive civic communication guidelines.
+  https://www.plainlanguage.gov
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-G07
+TITLE: Advertisement-Free and Politically Neutral Government Interface
+CATEGORY: E-Government | MOLD_US: G | PRIORITY: HIGH
+CHECKLIST_CRITERION: G7 — Ad-Free Neutrality
+PRIMARY FOR QUERIES ABOUT: advertisements, political content, banners, neutrality
+SUPPORTS: IDG-C07 (distraction-free interface — cognitive dimension)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+E-government applications shall not display moving advertisements, animated
+promotional banners, carousel sponsorships, third-party commercial partnerships,
+or dynamic campaign materials. Official government information campaigns (health
+advisories, emergency warnings) must be non-animated, static, text-based, and
+positioned below primary task workflows. Political content, party branding, and
+election-related material shall not appear anywhere in a government service interface.
+
+NOTE — PRIMARY / SUPPORTING RELATIONSHIP:
+IDG-G07 is PRIMARY for the e-government institutional neutrality and prohibition
+on commercial/political content. IDG-C07 is SUPPORTING for the cognitive
+distraction impact of animation and moving content on older adult task performance.
+Both apply when any promotional or animated content is considered.
+
+2. DESIGN SPECIFICATION
+- Prohibited: animated ads, rotating carousels, auto-playing video, third-party
+  commercial branding, sponsored content, political party logos/colours
+- Permitted: static, non-animated official notices (health advisories, emergency
+  warnings) positioned BELOW the primary task area and dismissible
+- Layout: official notices occupy ≤ 20% of screen height; primary task UI ≥ 80%
+- Emergency notices (flood/crisis): override rule — may appear above task UI;
+  must be clearly labelled as emergency and dismissible after reading
+
+3. IMPLEMENTATION CHECKLIST
+☐ No animated banners, carousels, or auto-playing media on any screen
+☐ No third-party commercial branding or advertisements present
+☐ No political content, party affiliation, or election material
+☐ Official notices: static, text-only, below task area, < 20% screen height
+☐ Emergency notices: labelled "Notis Kecemasan"; dismissible after reading
+☐ Content review checklist completed before every app update release
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : MySejahtera home screen — a static, non-animated, text-only notice:
+        "Notis: Klinik Komuniti tutup pada 25 Dis 2025." — below the main
+        menu, maximum 1 line, dismissible with a small ✕.
+DON'T : Auto-rotating carousel on home screen advertising government vaccination
+        campaigns, ministry events, and public advisories — the existing
+        MySejahtera design; participants' Confusion APS peaked during carousel
+        transitions while trying to locate their health certificate (Chapter 4.6.1).
+
+5. SUPPORTING SOURCE
+- Malaysian Communications and Multimedia Commission (MCMC) — Government
+  Digital Communication Guidelines: neutrality requirements.
+  https://www.mcmc.gov.my
+- Malaysian Anti-Corruption Commission (MACC) Act 2009: prohibition on political
+  content in government service delivery channels.
+- WCAG 2.2.2 (Pause, Stop, Hide — Level A): all moving content must be pauseable.
+
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDELINE_ID: IDG-G08
+TITLE: Accessible Omnichannel Fallback on All Core Screens
+CATEGORY: E-Government | MOLD_US: G | PRIORITY: HIGH
+CHECKLIST_CRITERION: G8 — Omnichannel Fallback
+PRIMARY FOR QUERIES ABOUT: human support fallback, helpdesk, failure, accessibility
+SUPPORTS: IDG-H05 (hedonic human support — emotional dimension)
+────────────────────────────────────────────────────────────────────────────────
+
+1. RELEVANT GUIDELINE
+Every core task screen shall provide single-tap access to all support channels
+simultaneously: (i) in-app chat or helpdesk; (ii) government hotline with operating
+hours; (iii) nearest physical service counter with address and hours; and
+(iv) a family-assistance guidance note describing how a family member can help
+complete the process. Hotline numbers shall be tappable. Physical-counter
+information shall include a map link. Human support is treated as a primary channel,
+not a last-resort fallback.
+
+NOTE — PRIMARY / SUPPORTING RELATIONSHIP:
+IDG-G08 is PRIMARY for the e-government omnichannel service-delivery dimension
+(specific channels required by government service standards, regulatory mandate for
+physical fallback, family-assistance guidance). IDG-H05 is SUPPORTING for the
+hedonic emotional support dimension (how support is presented to reduce anxiety
+and encourage help-seeking rather than silent struggle).
+
+2. DESIGN SPECIFICATION
+Four mandatory channels on every core task screen:
+  (i)   In-app chat: WhatsApp number or in-app helpdesk link
+  (ii)  Telephone hotline: tappable tel: URI + operating hours in plain BM
+  (iii) Physical counter: full address + Google Maps link + operating hours
+  (iv)  Family-assistance note: "Keluarga boleh membantu — tunjukkan skrin ini
+        kepada ahli keluarga untuk mendapatkan bantuan."
+- Access: single tap from any core task screen without scrolling
+- Design: treat physical counter and telephone as PRIMARY (not secondary) channels
+
+3. IMPLEMENTATION CHECKLIST
+☐ "Bantuan" button on every core task screen, no scrolling required
+☐ Support overlay shows all four channels simultaneously
+☐ Hotline number: tel: URI (tappable, opens dialler)
+☐ Physical counter: address + operating hours + Google Maps tappable link
+☐ Family-assistance note present in support overlay
+☐ Tested: older adult can initiate a hotline call from within the app in < 3 taps
+
+4. REAL-WORLD EXAMPLE / DO–DON'T
+DO    : Persistent "Bantuan ?" button (bottom-right, 44dp). Tap opens bottom sheet:
+        [WhatsApp 019-xxx xxxx] | [📞 03-8000 8000 (Isnin–Jumaat, 8am–5pm)]
+        [📍 Ibu Pejabat JPJ, Putrajaya — Lihat di Peta] | "Keluarga boleh membantu
+        — tunjukkan skrin ini kepada ahli keluarga."
+DON'T : Support only accessible via: Profile → Settings → Help → Contact → Hotline
+        (4 taps, requiring login). Observed in all three apps in this study;
+        7 of 8 participants did not access support during any task, resulting in
+        silent struggle (43 Affective Suppression instances, Chapter 4.7).
+
+5. SUPPORTING SOURCE
+- MAMPU Malaysian Government Public Service Delivery Framework: omnichannel
+  service delivery mandate including physical counter as primary channel.
+  https://www.mampu.gov.my
+- Malaysia Ministry of Digital (KD) — Digital Inclusion for Older Adults Policy
+  Paper (2024): family-mediated assistance recognised as a primary help channel.
+- This study, Chapter 4.7: the 50.45% Incongruence Rate and 43 Affective
+  Suppression instances demonstrate that without visible, immediate support access,
+  older users silently endure frustration rather than seek help.
+
+
+================================================================================
+STUDY EMPIRICAL DATA REFERENCE (for chatbot system prompt context)
+================================================================================
+
+The following key findings from this study may be cited by the chatbot when
+explaining WHY specific guidelines exist.
+
+TASK SUCCESS RATES (Chapter 4.5.1)
+- Task 1 (Language/Onboarding)  : TSR = 0.750  ← PRIMARY BARRIER
+- Task 2 (Navigation/Feature)   : TSR = 0.958
+- Task 3 (Transaction/Payment)  : TSR = 1.000
+- Task 4 (Status/Verification)  : TSR = 1.000
+
+FACIAL-AFFECTIVE FINDINGS (Chapter 4.6)
+- Dominant emotion: Confusion (mean APS = 0.425)
+- Major pain-point threshold: APS > 0.50
+- Task instances exceeding threshold: 31.3% (30 of 96 tasks)
+- Anxiety APS: elevated in biometric and data-collection screens
+- Distress APS: elevated in user-blaming error-message instances
+
+VERBAL-FACIAL INCONGRUENCE (Chapter 4.7)
+- Overall Incongruence Rate: 50.45%
+- Type A (Positive Verbal Masking / Courtesy Bias): 13 instances
+- Type B (Affective Suppression / Stoic User): 43 instances
+- Interpretation: more than half of participant verbal feedback did not
+  reflect their physiological/emotional state; most masked distress
+  (not positivity) → traditional surveys severely undercount problems
+
+CHECKLIST VALIDATION (Chapter 4.3)
+- Scale-level Content Validity Index (S-CVI/Ave): 0.885
+- Validated by 3 HCI experts
+- 32 items across 5 MOLD-US categories
+
+EXPERT REVIEW OF CHATBOT (Dr. Alhuseen Omar Nuri Alsayed, 20 June 2026)
+- All 32 Part A IDGs: rated 4/4 (Highly Relevant — no revision required)
+- All 10 Part B dimensions: rated 4/4 (Highly Relevant)
+- Overall recommendation: "Endorse with minor revision"
+- Revisions (now incorporated in v2.0):
+    Primary/supporting guideline labels
+    Supporting Source sections with accredited references
+    Design Example / Do–Don't sections
+    Uniform 5-part response structure
+
+
+================================================================================
+CHATBOT SYSTEM PROMPT (RECOMMENDED — for Custom GPT / Claude Project)
+================================================================================
+
+You are the IDG Design Assistant, an expert tool for developers, UX designers,
+and policymakers building Malaysian e-government mobile applications for older
+adults (aged 60 and above).
+
+You are based on the Intelligent Design Guidelines (IDGs) from the dissertation:
+"AI-Enhanced Evaluation of User Experience (UX) in E-Government Mobile
+Applications for Older Adults: Toward Intelligent Design Guidelines" by Winnie Ngu
+Pei Sing, Universiti Teknologi Malaysia, December 2025. Expert-reviewed and
+endorsed by Dr. Alhuseen Omar Nuri Alsayed, June 2026.
+
+For every query, respond in this exact 5-part structure:
+
+  ► PRIMARY GUIDELINE: [IDG-ID] — [Title]  (the guideline most directly answering the query)
+  ► SUPPORTING GUIDELINE(S): [IDG-ID(s)] — [Title(s)]  (if applicable)
+  ──────────────────────────────────────────────────────
+  1. RELEVANT GUIDELINE — State the guideline in plain language.
+  2. DESIGN SPECIFICATION — Concrete, implementable specifications (dimensions,
+     ratios, code references, precise measurements a developer can apply today).
+  3. IMPLEMENTATION CHECKLIST — A numbered or bulleted checklist of verification
+     steps a designer or developer should complete before sign-off.
+  4. REAL-WORLD EXAMPLE / DO–DON'T — A specific, actionable Do and Don't example,
+     referencing the three study applications (MySejahtera, MyJPJ, S Pay Global)
+     where applicable.
+  5. SUPPORTING SOURCE — Accredited references: WCAG criteria, ISO standards,
+     Malaysian legal/regulatory sources (PDPA 2010, MAMPU, Road Transport Act),
+     platform guidelines (Apple HIG, Material Design), and academic literature.
+
+Always:
+- Address Malaysian cultural context: Bahasa Melayu, Jata Negara, PDPA 2010,
+  MyKad, MAMPU, and the three target applications.
+- Cite IDG IDs in every response (e.g., "per IDG-S01").
+- When a query maps to more than one guideline, identify one as PRIMARY and
+  the others as SUPPORTING — rate the response primarily against the PRIMARY
+  guideline's intent.
+- Maintain an evidence-based, authoritative, and non-speculative tone.
+- Provide guidance that is specific to Malaysian older adults aged 60+, not
+  generic accessibility advice.
+
+You have access to empirical findings from the study: 50.45% verbal-facial
+Incongruence Rate (Affective Suppression dominated: 43 vs 13 instances);
+Confusion as the dominant emotion (APS = 0.425); Task 1 TSR = 0.750 (language/
+onboarding was the primary barrier). You may cite these findings when explaining
+why specific guidelines are evidence-based.
+
+
+================================================================================
+END OF KNOWLEDGE BASE — VERSION 2.0
+Revised per expert review: Dr. Alhuseen Omar Nuri Alsayed, 20 June 2026
+All 32 guidelines endorsed. Version 2.0 reflects all recommended enhancements.
+================================================================================
